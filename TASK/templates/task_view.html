@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Header start -->
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/create_task.css' %}">
+{% endblock header %}
+<!-- header end -->
+<!-- title start -->
+{% block title %}
+    Create task
+{% endblock title %}
+<!-- title end -->
+
+<!-- content start -->
+{% block content %}
+<div class="container new-cont mt-5">
+
+        {% csrf_token %}
+        <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Descriptions</th>
+                <th scope="col">Status</th>
+                <th scope="col">Assign To</th>
+                <th scope="col">Dealine</th>
+                <th scope="col text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {% for i in  tasks %}              
+                <th scope="row"></th>             
+                <td> {{i.title}} </td>
+                <td> {{i.description}} </td>
+                <td> {{i.status}} </td>
+                <td> {{i.assign_to}} </td>
+                <td> {{i.deadline}} </td>                
+                <td>
+                    <a href="{% url 'edit' i.id %}"><button type="button" class="btn btn-outline-success">Edit</button></a>
+                    <a href="{% url 'delete_task' i.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+                </td>
+              </tr>
+              
+              {% endfor %}
+              
+            </tbody>
+          </table>
+</div>
+{% endblock content %}
+<!-- content end -->

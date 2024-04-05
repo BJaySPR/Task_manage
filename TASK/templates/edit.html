@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Header start -->
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/create_task.css' %}">
+{% endblock header %}
+<!-- header end -->
+<!-- title start -->
+{% block title %}
+    Create task
+{% endblock title %}
+<!-- title end -->
+
+<!-- content start -->
+{% block content %}
+<div class="container new-cont mt-5">
+    <form action="{% url 'edit' dt.id %}" method="POST">
+        {% csrf_token %}
+        <div class="row rw">
+            <div class="col">
+                <h1 class="text-center alert alert-danger">Create a Task</h1>
+                <div class="msg py-2">
+                    <!-- messages -->
+                    {% if messages %}
+                    {% for  message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show py-2" role="alert">
+                    <strong>...</strong> {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div><br>
+                {% endfor %}
+                {% endif %}
+              <!--  /messages -->
+                </div>
+                <div class="input-group flex-nowrap inp ">            
+                    <input type="text" name="title" value="{{dt.title}}" class="input" placeholder="Title" aria-label="title" aria-describedby="addon-wrapping" required="">
+                </div><br>
+                <div class="input-group flex-nowrap inp ">            
+                    <input type="text" name="description" value="{{dt.description}}" class="input" placeholder="Description" aria-label="description" aria-describedby="addon-wrapping" required="">
+                </div><br>
+
+                <label for="">Status:</label><br>
+                <select class="form_select" aria-label="Default select example" name="status">                    
+                    <option selected> {{dt.status}} </option>  
+                    <option value="Open"> Open </option>                  
+                    <option value="In progress">In progress</option>
+                    <option value="Comleted">Comleted</option>                  
+                  </select><br><br>   
+
+                
+                <label for="">Assigned to:</label><br>                
+                <select value="{{dt.assign_to}}" name="assign_to" class="form-select" aria-label="Default select example">
+                    <option selected> {{dt.assign_to}} </option>
+                    {% for i in members %}
+                    <option value="{{i.username}}"> {{i.username}} </option>
+                    {% endfor %}
+                  </select>
+                <br>                  
+                <div class="input-group flex-nowrap inp ">            
+                    <input type="text" class="input" placeholder="Deadline... YYYY-MM-DD" aria-label="deadline" aria-describedby="addon-wrapping" name="datetime" value="{{dt.deadline}}" required="">
+                </div><br>
+                <p>Note:Date should be given in YYYY-MM-DD</p>
+                <input type="submit" class="btn btn-info" value="Update Task">                
+                
+            </div>
+             
+            <div class="col-sm-5">
+                <h2 class="alert alert-success imgs"></h2>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+<!-- content end -->

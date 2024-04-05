@@ -1,0 +1,38 @@
+.new-cont{
+    position: relative;
+    height: auto;
+    padding: 2%;
+    padding: 0px 20%;
+
+    
+}
+.input{
+    border-radius: 10px;
+    width: 600px;
+    height: 40px;
+    border: 1px solid  #ccc;
+    padding: 1%;
+    
+}
+.input:focus{
+    outline: 1px solid green;
+}
+
+h1{
+    position: relative;
+    background-color: antiquewhite;
+}
+h2{
+    position: relative;
+    top: 10%;
+    height: 400px;
+    background-image:linear-gradient(rgba(3, 3, 58, 0.51),rgba(26, 1, 1, 0.51)), url('../images/task-manage-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.rw{
+    border: 1px solid black;
+    padding: 2%;
+    box-shadow: inset 0px 3px 30px;
+}
